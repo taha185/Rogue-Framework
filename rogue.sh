@@ -1,10 +1,8 @@
 #!/bin/bash
-read -p "Would you Like to Install Everything(y/N) : " ch 
-if [ "$ch" == "y" ]; then
-  bash tools/setup.sh
-elif [ "$ch" == "N" ]; then
 echo ""
-fi
+echo "PLEASE RUN THE SETUP FILE FIRST (bash tools/setup.sh)"
+sleep 3
+clear
 echo -e "\n================ Rogue Framework =================\n"
 echo 'DISCLAIMER:
 
@@ -24,7 +22,9 @@ echo -e "\nAvailable Commands:\n"
 echo -e "  portscan     - Simple port scanner"
 echo -e "  bannergrab   - Banner grabber"
 echo -e "  ping         - Ping tool"
+echo -e "  dnsr         - Reslove a Dns (DNS -> IP)"
 echo -e "  help         - Show this menu"
+echo -e "  hunt         - hunt a user across social media (OSINT)"
 
 echo -e "\n==================================================\n"
 
@@ -33,21 +33,23 @@ echo "======================================"
 
 
 while true; do
-  read -p "rogue>> " cmd
+  read -p "rogue >> " cmd
 
   if [ "$cmd" == "portscan" ]; then
     python2 tools/portscanner.py
-
   elif [ "$cmd" == "bannergrab" ]; then
     python3 tools/bannergrab.py
-
   elif [ "$cmd" == "ping" ]; then
     bash tools/ping.sh
-
+  elif [ "$cmd" == "hunt" ]; then
+    python3 tools/recon.py
+    elif [ "$cmd" == "dnsr" ]; then
+    python3 tools/dns_resolver.py
   elif [ "$cmd" == "help" ]; then
     echo "Available Commands:"
     echo "  portscan     - Simple port scanner"
     echo "  bannergrab   - Basic banner grabber"
+    echo "  hunt         - hunt a user across social media (OSINT)"
     echo "  ping         - Ping tool"
     echo "  help         - Show this help menu"
 
